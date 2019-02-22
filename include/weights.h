@@ -9,9 +9,22 @@
 
 namespace Net {
 
-    struct Neuron {
+    class Neuron {
         // vector of neuron weights
         std::vector< double > weights;
+
+    public:
+        Neuron(unsigned long);
+        Neuron(const Neuron &);
+        Neuron &operator=(const Neuron &);
+
+        bool operator==(const Neuron &) const;
+        bool operator!=(const Neuron &) const;
+
+        Neuron(const Neuron &&) = delete;
+        Neuron &operator=(const Neuron &&) = delete;
+
+        std::vector<double> get_weight() const;
     };
 
     class Weight {
@@ -22,11 +35,14 @@ namespace Net {
         Weight(std::vector<unsigned int>);
         Weight &operator=(const Weight &);
 
+        bool operator==(const Weight &) const;
+        bool operator!=(const Weight &) const;
+
         Weight(const Weight &&) = delete;
         Weight &operator=(const Weight &&) = delete;
 
         // test print weights
-        void print_w();
+        void print_w() const;
     };
 }
 
